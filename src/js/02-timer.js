@@ -36,10 +36,13 @@ const options = {
 const chekedDate = flatpickr(refs.input, options);
 
 function onButtonClick() {
-  setInterval(() => {
+  const timerId = setInterval(() => {
     deltaTime -= 1000;
     time = convertMs(deltaTime);
     updateClockface(time);
+    if (deltaTime < 1000) {
+      clearInterval(timerId);
+    }
   }, 1000);
 }
 
